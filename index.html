@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Dr. Abdul Wasae | Cardiology & Heart Care | Sahiwal</title>
+  <!-- Tailwind CSS v3 -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- SF Pro / Inter Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background-color: #050505;
+      letter-spacing: -0.01em;
+      scroll-behavior: smooth;
+    }
+    /* Glassmorphism core */
+    .glass-card {
+      background: rgba(18, 18, 20, 0.7);
+      backdrop-filter: blur(12px);
+      border: 0.5px solid rgba(255, 255, 255, 0.08);
+      border-radius: 2rem;
+    }
+    .glass-nav {
+      background: rgba(8, 8, 10, 0.75);
+      backdrop-filter: blur(20px);
+      border-bottom: 0.5px solid rgba(255, 255, 255, 0.05);
+    }
+    /* Subtle noise texture overlay */
+    .noise-bg::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.02;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='1' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+    }
+    .hover-lift {
+      transition: transform 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1), box-shadow 0.3s ease;
+    }
+    .hover-lift:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.6);
+    }
+    .sale-badge {
+      background: linear-gradient(135deg, #E11D48 0%, #BE123C 100%);
+      box-shadow: 0 4px 12px rgba(225, 29, 72, 0.3);
+    }
+    .scroll-reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.8s cubic-bezier(0.2, 0.9, 0.4, 1.1), transform 0.8s ease;
+    }
+    .scroll-reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .gradient-text {
+      background: linear-gradient(120deg, #FFFFFF, #F97316, #E11D48);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      background-size: 200% auto;
+      animation: shimmer 6s infinite linear;
+    }
+    @keyframes shimmer {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0a0a0a;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #E11D48;
+      border-radius: 10px;
+    }
+    .back-to-top {
+      transition: all 0.2s ease;
+    }
+    input:focus {
+      outline: none;
+      border-color: #E11D48;
+    }
+    @media (max-width: 768px) {
+      .glass-card {
+        border-radius: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body class="text-white antialiased noise-bg relative bg-black">
+
+  <!-- Sticky Navigation (Apple-like glass) -->
+  <nav class="fixed top-0 left-0 w-full z-50 glass-nav px-6 md:px-12 py-4 flex items-center justify-between flex-wrap transition-all duration-300">
+    <div class="flex items-center space-x-2">
+      <i class="fas fa-heartbeat text-2xl text-rose-500"></i>
+      <span class="font-semibold tracking-tight text-xl">Dr. Abdul<span class="text-rose-500">Wasae</span></span>
+      <span class="hidden md:inline-block text-[10px] bg-white/10 px-2 py-0.5 rounded-full ml-2 tracking-wide">Cardiology</span>
+    </div>
+    <div class="hidden md:flex space-x-10 text-sm font-medium">
+      <a href="#" class="hover:text-rose-400 transition">Home</a>
+      <a href="#services" class="hover:text-rose-400 transition">Services</a>
+      <a href="#reviews" class="hover:text-rose-400 transition">Reviews</a>
+      <a href="#contact" class="hover:text-rose-400 transition">Contact</a>
+    </div>
+    <div class="flex items-center gap-4">
+      <a href="tel:03114537459" class="hidden sm:flex items-center gap-2 bg-white/5 backdrop-blur-sm px-5 py-2 rounded-full border border-white/10 text-sm font-medium hover:bg-rose-500/20 transition-all"><i class="fas fa-phone-alt text-rose-400"></i> Call Now</a>
+      <button class="bg-rose-500 hover:bg-rose-600 text-black font-semibold px-5 py-2 rounded-full text-sm transition shadow-lg shadow-rose-500/20">Book Consultation</button>
+    </div>
+  </nav>
+
+  <main class="pt-28 md:pt-32 overflow-hidden">
+    <!-- Hero Section with Animated Gradient Text & Live Search -->
+    <section class="px-6 md:px-12 max-w-7xl mx-auto">
+      <div class="text-center space-y-6 scroll-reveal">
+        <span class="inline-block bg-white/5 backdrop-blur-sm px-4 py-1.5 rounded-full text-xs tracking-wide border border-white/10"><i class="fas fa-heart text-rose-400 mr-1"></i> Interventional Cardiologist · DHQ Teaching Hospital</span>
+        <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-[1.1]">
+          Heart <span class="gradient-text">Care</span><br>
+          With Precision & Compassion
+        </h1>
+        <p class="text-gray-300 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">Advanced cardiology, echocardiography, hypertension & diabetes management — consultant care at Life Line Medical Complex, Sahiwal.</p>
+        
+        <!-- Live Search (interactive for services / conditions) -->
+        <div class="max-w-lg mx-auto mt-8 relative">
+          <div class="relative flex items-center">
+            <i class="fas fa-search absolute left-5 text-gray-400"></i>
+            <input type="text" id="liveSearchInput" placeholder="Search: echo, hypertension, cholesterol, ECG..." class="w-full bg-black/40 backdrop-blur-md border border-white/10 rounded-full py-4 pl-12 pr-28 text-white placeholder:text-gray-500 focus:border-rose-400/70 transition-all">
+            <button id="searchBtn" class="absolute right-2 bg-rose-500 hover:bg-rose-600 text-black font-medium px-5 py-2 rounded-full text-sm transition-all">Search</button>
+          </div>
+          <div id="searchResults" class="absolute top-full left-0 w-full bg-black/90 backdrop-blur-xl mt-2 rounded-2xl border border-white/10 z-20 hidden flex-col text-sm"></div>
+        </div>
+      </div>
+
+      <!-- Trust/Feature Stats (glassmorphism) -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-5 mt-20 scroll-reveal">
+        <div class="glass-card p-6 text-center hover-lift transition-all">
+          <i class="fas fa-user-md text-3xl text-rose-400 mb-3"></i>
+          <div class="text-2xl font-bold">12+ Years</div>
+          <div class="text-xs uppercase tracking-wider text-gray-400">Clinical Experience</div>
+        </div>
+        <div class="glass-card p-6 text-center hover-lift transition-all">
+          <i class="fas fa-star text-3xl text-rose-400 mb-3"></i>
+          <div class="text-2xl font-bold">5.0 ★</div>
+          <div class="text-xs uppercase tracking-wider text-gray-400">Rating (Verified)</div>
+        </div>
+        <div class="glass-card p-6 text-center hover-lift transition-all">
+          <i class="fas fa-chart-line text-3xl text-rose-400 mb-3"></i>
+          <div class="text-2xl font-bold">5k+</div>
+          <div class="text-xs uppercase tracking-wider text-gray-400">Cardiac Patients</div>
+        </div>
+        <div class="glass-card p-6 text-center hover-lift transition-all">
+          <i class="fas fa-microscope text-3xl text-rose-400 mb-3"></i>
+          <div class="text-2xl font-bold">Advanced</div>
+          <div class="text-xs uppercase tracking-wider text-gray-400">Echo & Treadmill</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Product Grid (Services / Procedures) with Sale/Hot badges -->
+    <section id="services" class="px-6 md:px-12 max-w-7xl mx-auto mt-28">
+      <div class="text-left mb-12 scroll-reveal">
+        <span class="text-rose-400 tracking-widest text-sm font-semibold uppercase">Specialized Heart Care</span>
+        <h2 class="text-4xl md:text-5xl font-bold mt-2 tracking-tight">Comprehensive<br>Cardiac Services</h2>
+      </div>
+      <div class="grid md:grid-cols-3 gap-7">
+        <!-- Service 1 with Hot badge -->
+        <div class="glass-card rounded-3xl overflow-hidden group hover-lift relative scroll-reveal">
+          <div class="sale-badge absolute top-4 right-4 text-[11px] font-bold px-3 py-1 rounded-full z-10 text-white">⭐ ESSENTIAL</div>
+          <div class="h-48 bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center"><i class="fas fa-stethoscope text-6xl text-rose-400/80"></i></div>
+          <div class="p-6">
+            <h3 class="text-2xl font-semibold">Echocardiography</h3>
+            <p class="text-gray-300 text-sm mt-2 leading-relaxed">2D Echo, Doppler, and advanced imaging for structural heart assessment.</p>
+            <div class="mt-4 flex items-center justify-between"><span class="text-rose-400 font-bold">State-of-art</span><i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i></div>
+          </div>
+        </div>
+        <!-- Service 2 -->
+        <div class="glass-card rounded-3xl overflow-hidden group hover-lift relative scroll-reveal">
+          <div class="h-48 bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center"><i class="fas fa-running text-6xl text-rose-400/80"></i></div>
+          <div class="p-6">
+            <h3 class="text-2xl font-semibold">Exercise Tolerance Test</h3>
+            <p class="text-gray-300 text-sm mt-2 leading-relaxed">Treadmill stress testing to evaluate coronary artery function.</p>
+            <div class="mt-4 flex items-center justify-between"><span class="text-rose-400 font-bold">Accurate</span><i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i></div>
+          </div>
+        </div>
+        <!-- Service 3 with sale badge - limited -->
+        <div class="glass-card rounded-3xl overflow-hidden group hover-lift relative scroll-reveal">
+          <div class="sale-badge absolute top-4 right-4 text-[11px] font-bold px-3 py-1 rounded-full z-10 text-white">🔥 RISK MGMT</div>
+          <div class="h-48 bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center"><i class="fas fa-chart-pie text-6xl text-rose-400/80"></i></div>
+          <div class="p-6">
+            <h3 class="text-2xl font-semibold">Hypertension & Diabetes</h3>
+            <p class="text-gray-300 text-sm mt-2 leading-relaxed">Comprehensive management plans to reduce cardiovascular risk.</p>
+            <div class="mt-4 flex items-center justify-between"><span class="text-rose-400 font-bold">Preventive</span><i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Brand Showcase: Medical Partners & Advanced Tech -->
+    <section class="mt-28 py-12 border-y border-white/5 bg-black/30">
+      <div class="max-w-6xl mx-auto px-6 text-center scroll-reveal">
+        <p class="text-gray-400 text-sm uppercase tracking-wider mb-6">Trusted by leading institutions & technology partners</p>
+        <div class="flex flex-wrap justify-center gap-10 md:gap-16 items-center opacity-70 hover:opacity-100 transition-all duration-500">
+          <i class="fas fa-hospital-user text-4xl text-white/60"></i>
+          <span class="text-2xl font-light tracking-tight">DHQ Sahiwal</span>
+          <i class="fas fa-heartbeat text-4xl text-rose-400/60"></i>
+          <span class="text-2xl font-light tracking-tight">Life Line Medical</span>
+          <i class="fas fa-microchip text-3xl text-white/60"></i>
+          <span class="text-xl font-mono">GE Healthcare</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Customer Reviews Section -->
+    <section id="reviews" class="px-6 md:px-12 max-w-7xl mx-auto mt-28">
+      <div class="text-center scroll-reveal">
+        <i class="fas fa-heart text-rose-500 text-3xl mb-2"></i>
+        <h2 class="text-4xl md:text-5xl font-bold tracking-tight">Patient Stories</h2>
+        <p class="text-gray-400 max-w-xl mx-auto mt-3">Real experiences from those who trusted their hearts to Dr. Abdul Wasae</p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-7 mt-14">
+        <div class="glass-card p-6 rounded-2xl scroll-reveal hover-lift">
+          <div class="flex text-rose-400 mb-3">★★★★★</div>
+          <p class="text-gray-200 text-sm leading-relaxed">"Dr. Wasae’s expertise in interventional cardiology gave me a new lease on life. His detailed echo & stress test were life-saving. Highly professional."</p>
+          <div class="flex items-center mt-5 gap-3"><i class="fas fa-user-circle text-2xl text-rose-400/70"></i><div><div class="font-semibold text-sm">Muhammad Akram</div><div class="text-[11px] text-gray-500">Muhammadi Colony</div></div></div>
+        </div>
+        <div class="glass-card p-6 rounded-2xl scroll-reveal hover-lift">
+          <div class="flex text-rose-400 mb-3">★★★★★</div>
+          <p class="text-gray-200 text-sm leading-relaxed">"Exceptional diabetes and hypertension management. The clinic at Life Line is clean, modern, and the staff is kind. Dr. Wasae takes time to explain."</p>
+          <div class="flex items-center mt-5 gap-3"><i class="fas fa-user-circle text-2xl text-rose-400/70"></i><div><div class="font-semibold text-sm">Saba Tariq</div><div class="text-[11px] text-gray-500">Sahiwal Cantt</div></div></div>
+        </div>
+        <div class="glass-card p-6 rounded-2xl scroll-reveal hover-lift">
+          <div class="flex text-rose-400 mb-3">★★★★★</div>
+          <p class="text-gray-200 text-sm leading-relaxed">"Highly recommend for preventive heart care. The consultant cardiologist role at DHQ gives confidence. Very responsive and patient-centered."</p>
+          <div class="flex items-center mt-5 gap-3"><i class="fas fa-user-circle text-2xl text-rose-400/70"></i><div><div class="font-semibold text-sm">Rashid Mehmood</div><div class="text-[11px] text-gray-500">Farid Town</div></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Alternating light/dark sections: Promo Tiles (Premium style) -->
+    <section class="mt-28">
+      <div class="grid md:grid-cols-2 gap-0">
+        <!-- Dark tile with subtle gradient -->
+        <div class="bg-gradient-to-tr from-black to-gray-950 p-10 md:p-16 flex flex-col justify-center scroll-reveal">
+          <i class="fas fa-clock text-4xl text-rose-400 mb-4"></i>
+          <h3 class="text-3xl font-bold">Evening & Weekend Hours</h3>
+          <p class="text-gray-300 mt-3 max-w-md">Operating Mon-Fri 4:00PM–10:00PM & Sunday same schedule. Prioritizing working professionals.</p>
+          <button class="mt-6 bg-white/10 hover:bg-rose-500/20 w-fit px-6 py-2 rounded-full border border-white/20 text-sm backdrop-blur-sm transition">Schedule Appointment →</button>
+        </div>
+        <!-- Lighter glass tile (premium) -->
+        <div class="bg-white/5 backdrop-blur-sm p-10 md:p-16 flex flex-col justify-center scroll-reveal border-l border-white/5">
+          <i class="fas fa-building text-4xl text-rose-400 mb-4"></i>
+          <h3 class="text-3xl font-bold">Life Line Medical Complex</h3>
+          <p class="text-gray-300 mt-3 max-w-md">Multi-specialty hub — gynecology, neurology under one roof. Seamless referrals for comprehensive care.</p>
+          <button class="mt-6 bg-rose-500/10 hover:bg-rose-500/30 w-fit px-6 py-2 rounded-full border border-rose-500/30 text-sm transition">Get Directions →</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Location & Contact Section (Apple-inspired map alternative) -->
+    <section id="contact" class="max-w-6xl mx-auto px-6 mt-28 mb-20 scroll-reveal">
+      <div class="glass-card p-8 md:p-12 rounded-3xl">
+        <div class="grid md:grid-cols-2 gap-8">
+          <div>
+            <i class="fas fa-map-marker-alt text-rose-400 text-2xl mb-3"></i>
+            <h3 class="text-2xl font-bold">Visit the Clinic</h3>
+            <p class="text-gray-300 mt-2">Life line Medical Complex, 537-A Jail Road, near DPO office & Passport Office, Muhammadi Colony, Sahiwal, Pakistan</p>
+            <div class="flex items-center gap-4 mt-5"><i class="fas fa-phone-alt text-rose-400"></i><span>0311 4537459</span></div>
+            <div class="flex items-center gap-4 mt-2"><i class="fas fa-envelope text-rose-400"></i><span>heartcare@wasaeclinic.pk</span></div>
+            <div class="flex gap-3 mt-6"><i class="fab fa-whatsapp text-green-400 text-xl"></i><i class="fab fa-instagram text-white/70 text-xl"></i><i class="fab fa-facebook text-white/70 text-xl"></i></div>
+          </div>
+          <div class="bg-black/40 rounded-2xl p-5 border border-white/10">
+            <p class="font-mono text-sm text-rose-400 mb-2"><i class="far fa-calendar-alt mr-1"></i> Operational Hours</p>
+            <ul class="space-y-2 text-gray-200 text-sm">
+              <li class="flex justify-between"><span>Monday - Friday</span><span>4:00 PM – 10:00 PM</span></li>
+              <li class="flex justify-between"><span>Saturday</span><span>Closed (Emergency only)</span></li>
+              <li class="flex justify-between"><span>Sunday</span><span>4:00 PM – 10:00 PM</span></li>
+            </ul>
+            <div class="mt-6 flex gap-2 text-xs text-gray-400 border-t border-white/10 pt-4"><i class="fas fa-shield-alt text-rose-400"></i><span>Strict hygiene & appointment protocols · Masks encouraged</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Back to Top Button -->
+  <button id="backToTop" class="fixed bottom-8 right-8 bg-rose-500 text-black w-12 h-12 rounded-full flex items-center justify-center shadow-2xl opacity-0 transition-all duration-300 z-50 hover:scale-110"><i class="fas fa-arrow-up"></i></button>
+
+  <footer class="border-t border-white/10 py-8 text-center text-gray-500 text-xs">
+    <p>© 2025 Dr. Abdul Wasae — Consultant Interventional Cardiologist. Excellence in Heart Care, Sahiwal.</p>
+  </footer>
+
+  <script>
+    // Intersection Observer for scroll-triggered fade-ins
+    const revealElements = document.querySelectorAll('.scroll-reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2, rootMargin: "0px 0px -20px 0px" });
+    revealElements.forEach(el => observer.observe(el));
+
+    // Back to top logic
+    const backBtn = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 500) {
+        backBtn.classList.remove('opacity-0');
+        backBtn.classList.add('opacity-100');
+      } else {
+        backBtn.classList.add('opacity-0');
+        backBtn.classList.remove('opacity-100');
+      }
+    });
+    backBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // LIVE SEARCH functionality for cardiac services
+    const searchInput = document.getElementById('liveSearchInput');
+    const searchBtn = document.getElementById('searchBtn');
+    const resultsDiv = document.getElementById('searchResults');
+    
+    const searchableItems = [
+      "Echocardiography", "2D Echo", "Doppler", "Exercise Tolerance Test", "Treadmill Test", "Hypertension", "Diabetes Management", "Cholesterol Check", "ECG", "Holter Monitoring", "Cardiac Consultation", "Interventional Cardiology", "Heart Failure", "Preventive Cardiology", "Risk Assessment", "Dr. Abdul Wasae", "DHQ Hospital", "Life Line Medical Complex"
+    ];
+    
+    function performSearch() {
+      const query = searchInput.value.trim().toLowerCase();
+      if (query === "") {
+        resultsDiv.classList.add('hidden');
+        return;
+      }
+      const filtered = searchableItems.filter(item => item.toLowerCase().includes(query));
+      if (filtered.length === 0) {
+        resultsDiv.innerHTML = `<div class="p-4 text-gray-400 text-center">❤️ No matching services. Call 0311 4537459 for personalized care.</div>`;
+        resultsDiv.classList.remove('hidden');
+      } else {
+        resultsDiv.innerHTML = filtered.map(item => `<div class="px-5 py-3 border-b border-white/10 hover:bg-white/10 cursor-pointer transition text-sm">🫀 ${item}</div>`).join('');
+        resultsDiv.classList.remove('hidden');
+        document.querySelectorAll('#searchResults div').forEach(el => {
+          el.addEventListener('click', (e) => {
+            const text = e.currentTarget.innerText.replace('🫀 ', '');
+            searchInput.value = text;
+            resultsDiv.classList.add('hidden');
+          });
+        });
+      }
+    }
+    
+    searchInput.addEventListener('input', performSearch);
+    searchBtn.addEventListener('click', performSearch);
+    document.addEventListener('click', function(e) {
+      if (!searchInput.contains(e.target) && !resultsDiv.contains(e.target)) {
+        resultsDiv.classList.add('hidden');
+      }
+    });
+    
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const targetId = this.getAttribute('href');
+        if(targetId && targetId !== "#") {
+          const target = document.querySelector(targetId);
+          if(target) {
+            e.preventDefault();
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }
+      });
+    });
+    
+    // Initial visible check for elements already in view
+    setTimeout(() => {
+      revealElements.forEach(el => { if(el.getBoundingClientRect().top < window.innerHeight-100) el.classList.add('visible'); });
+    }, 100);
+  </script>
+</body>
+</html>
